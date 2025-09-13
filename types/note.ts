@@ -9,3 +9,4 @@ export interface Note {
 }
 // NoteTag може бути лише одним із цих рядків:
 export type NoteTag = "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
+

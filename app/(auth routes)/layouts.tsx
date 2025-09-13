@@ -3,22 +3,20 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-type AuthLayoutProps = {
+type Props = {
   children: React.ReactNode;
 };
 
-const AuthLayout = ({ children }: AuthLayoutProps) => {
+export default function PublicLayout({ children }: Props) {
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
 
   useEffect(() => {
-    // refresh will cause the data to be reloaded
+    // refresh викличе перезавантаження даних
     router.refresh();
     setLoading(false);
   }, [router]);
 
   return <>{loading ? <div>Loading...</div> : children}</>;
-};
-
-export default AuthLayout;
+}

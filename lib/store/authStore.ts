@@ -1,18 +1,20 @@
-"use client";
+import { create } from 'zustand';
+import { User } from '@/types/user';
 
-import { User } from "@/types/user";
-import { create } from "zustand";
-
-interface AuthState {
-  user: User | null;
+type AuthStore = {
   isAuthenticated: boolean;
+  user: User | null;
   setUser: (user: User) => void;
   clearIsAuthenticated: () => void;
-}
+};
 
-export const useAuthStore = create<AuthState>()((set) => ({
-  user: null,
+export const useAuthStore = create<AuthStore>()((set) => ({
   isAuthenticated: false,
-  setUser: (user) => set({ user, isAuthenticated: true }),
-  clearIsAuthenticated: () => set({ user: null, isAuthenticated: false }),
+  user: null,
+  setUser: (user: User) => {
+    set(() => ({ user, isAuthenticated: true }));
+  },
+  clearIsAuthenticated: () => {
+    set(() => ({ user: null, isAuthenticated: false }));
+  },
 }));
